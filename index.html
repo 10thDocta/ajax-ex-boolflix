@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+        integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <input type="text" name="search-film" id="search-film">
+
+    <div class="film-container">
+
+    </div>
+
+
+    <script id="film-template" type="text/x-handlebars-template">
+        <div class="film-sheet">
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="">
+            </div>
+            <div>Titolo : <h2>{{title}}</h2>
+            </div>
+            <div>Titolo originale : <h3>{{original_title}}</h3>
+            </div>
+            <div>Data di uscita : {{release_date}}</div>
+            <div>{{overview}}</div>
+            <div>Media voti : <strong>{{vote_average}}</strong> </div>
+        </div>
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
