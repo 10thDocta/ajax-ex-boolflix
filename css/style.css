@@ -35,7 +35,7 @@ ul {
   display: flex;
 }
 
-.film-container ul {
+.film-container > ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -88,6 +88,10 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.film-sheet .vote-star li {
+  display: inline-block;
 }
 
 li.film-sheet:last-child {

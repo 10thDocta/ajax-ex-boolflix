@@ -31,7 +31,7 @@ ul {
   margin: 10px 0;
   display: flex;
 
-  ul {
+  & > ul {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -68,6 +68,12 @@ ul {
     min-height: 100px;
     display: flex;
     flex-direction: column;
+  }
+
+  .vote-star {
+    li {
+      display: inline-block;
+    }
   }
 }
 

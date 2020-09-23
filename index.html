@@ -9,6 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
         integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -41,19 +44,22 @@
 
 
     <script id="film-template" type="text/x-handlebars-template">
-        <li class="film-sheet">
+        <li class="film-sheet {{active}}">
             <div class="img-container">
-                <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="">
+                <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt="">
             </div>
             <div class="title">Titolo : <h2>{{title}}</h2>
             </div>
             <div class="original-title">Titolo originale : <h3>{{original_title}}</h3>
             </div>
+            <div class="original_language">Lingua originale : {{original_language}}</div>
             <div class="release-date">Data di uscita : {{release_date}}</div>
             <div class="overview">{{overview}}</div>
             <div class="genre">Genere : {{genre}} </div>
             <div class="popularity">Popolarità : {{popularity}}</div>
             <div class="vote-average">Media voti : <strong>{{vote_average}}</strong> </div>
+            <div class="vote-star"><ul></ul></strong> </div>
+            
         </li>
     </script>
 

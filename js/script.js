@@ -22,7 +22,7 @@ const render = (arrObj, generObj, sortingKey = "popularity") => {
     var source = document.getElementById("film-template").innerHTML;
     var template = Handlebars.compile(source);
 
-    // in base all'argomento "sortingKey" cambio il sorting 
+    //ciclo ogni oggetto in arrObj e in base all'argomento "sortingKey" cambio il sorting 
     arrObj.results.sort((a, b) => sortingKey == "vote_average" ? b[sortingKey] - a[sortingKey] : parseInt(b[sortingKey], 10) - parseInt(a[sortingKey], 10)).forEach(el => {
 
         // variabile di appoggio per salvare e poi stampare i generi
@@ -42,22 +42,40 @@ const render = (arrObj, generObj, sortingKey = "popularity") => {
             })
         })
 
+        //creo n stelline in base alla valutazione media (el.vote_average)
+        const countStars = Math.ceil(el.vote_average / 2);
+        // console.log(countStars);
+        let tempStarArr = [];
+        for (let i = 0; i < countStars; i++) {
+            console.log(i);
+            tempStarArr.push(`<li><i class="fas fa-star"></i></li>`);
+        }
+        for (let i = 0; i < 5 - countStars; i++) {
+            tempStarArr.push(`<li><i class="far fa-star"></i></li>`);
+        }
+        console.log(tempStarArr);
+
         //creo l'oggetto che servirà per compilare in automatico con handlebars
         const context = {
+            "active": "active",
             "poster_path": el.poster_path,
             "title": el.title,
             "original_title": el.original_title,
+            "original_language": el.original_language,
             "release_date": el.release_date,
             "overview": el.overview.split(" ").slice(0, 30).join(" ") + "...",
             "genre": genreArr.join(", "),
             "popularity": el.popularity,
-            "vote_average": el.vote_average
+            "vote_average": el.vote_average,
+            // "vote-star": tempStarArr.join(" "),
         }
 
         // compilo il template e lo aggiungo all'html
         var html = template(context);
         $(".film-container > ul").append(html);
 
+        $(".film-sheet.active").find(".vote-star ul").append(tempStarArr.join(" "));
+        $(".film-sheet.active").removeClass("active");
 
     });
 }
