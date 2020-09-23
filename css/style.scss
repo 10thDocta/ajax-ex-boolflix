@@ -44,6 +44,13 @@ ul {
   max-width: 200px;
   display: flex;
   flex-direction: column;
+  transition: padding 0.3s ease-out;
+
+  &:hover {
+    border-radius: 6px;
+    background-color: darkgrey;
+    padding-top: 10px;
+  }
 
   & > div {
     margin: 6px;

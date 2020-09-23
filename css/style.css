@@ -55,6 +55,14 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-transition: padding 0.3s ease-out;
+  transition: padding 0.3s ease-out;
+}
+
+.film-sheet:hover {
+  border-radius: 6px;
+  background-color: darkgrey;
+  padding-top: 10px;
 }
 
 .film-sheet > div {
