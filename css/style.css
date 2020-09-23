@@ -94,6 +94,13 @@ ul {
           flex-direction: column;
 }
 
+.film-sheet .flag {
+  max-width: 23px;
+  vertical-align: middle;
+  border-radius: 25%;
+  margin-left: 9px;
+}
+
 .film-sheet .vote-star li {
   display: inline-block;
 }

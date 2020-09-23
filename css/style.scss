@@ -71,6 +71,13 @@ ul {
     flex-direction: column;
   }
 
+  .flag {
+    max-width: 23px;
+    vertical-align: middle;
+    border-radius: 25%;
+    margin-left: 9px;
+  }
+
   .vote-star {
     li {
       display: inline-block;

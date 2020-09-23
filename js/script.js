@@ -67,7 +67,7 @@ const render = (arrObj, generObj, type = "", sortingKey = "popularity") => {
             "poster_path": el.poster_path != null ? "https://image.tmdb.org/t/p/w300/" + el.poster_path : "img/NoImage.png",
             "title": "",
             "original_title": "",
-            "original_language": el.original_language,
+            "original_language": `img/flags/${el.original_language.slice(0, 2)}.svg `,
             "release_date": "",
             "overview": el.overview.split(" ").slice(0, 30).join(" ") + "...",
             "genre": genreArr.join(", "),
@@ -90,7 +90,7 @@ const render = (arrObj, generObj, type = "", sortingKey = "popularity") => {
                 break;
 
             default:
-                console.log("errore nell'argomento 'type");
+                console.log("errore nell'argomento 'type'");
                 break;
         }
 
@@ -223,21 +223,21 @@ $(function () {
     })
 
     // // filtro i risultati
-    //     $("#sort-genre").change(function () {
+    // $("#sort-genre").change(function () {
 
-    //         const value = $(this).val();
+    //     const value = $(this).val();
 
-    //         $(".film-container .film-sheet").filter(function () {
+    //     $(".film-container .film-sheet").filter(function () {
 
-    //             if (value == "all") {
-    //                 $(this).show();
-    //             } else {
-    //                 $(this).toggle($(this).children(".genre").text().toLowerCase().includes(value));
-    //             }
-    //         });
+    //         if (value == "all") {
+    //             $(this).show();
+    //         } else {
+    //             $(this).toggle($(this).children(".genre").text().toLowerCase().includes(value));
+    //         }
+    //     });
 
 
-    //     })
+    // })
 
 
 
