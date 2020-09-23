@@ -15,28 +15,46 @@
 
 <body>
 
+    <div class="search-input">
+        <input type="text" name="search-film" id="search-film">
+    </div>
 
-    <input type="text" name="search-film" id="search-film">
+    <div class="filter">
+        <label for="sort-result">Ordina</label>
+        <select name="sort-result" id="sort-result">
+            <option value="popularity">Popolarità</option>
+            <option value="release_date">Data di uscita</option>
+            <option value="vote_average">Media Voti</option>
+        </select>
+
+        <label for="sort-genre">Filtra</label>
+        <select name="sort-genre" id="sort-genre">
+            <option value="all">All</option>
+        </select>
+    </div>
 
     <div class="film-container">
+        <ul>
 
+        </ul>
     </div>
 
 
     <script id="film-template" type="text/x-handlebars-template">
-        <div class="film-sheet">
+        <li class="film-sheet">
             <div class="img-container">
                 <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="">
             </div>
-            <div>Titolo : <h2>{{title}}</h2>
+            <div class="title">Titolo : <h2>{{title}}</h2>
             </div>
-            <div>Titolo originale : <h3>{{original_title}}</h3>
+            <div class="original-title">Titolo originale : <h3>{{original_title}}</h3>
             </div>
-            <div>Data di uscita : {{release_date}}</div>
-            <div>{{overview}}</div>
-            <div>Popolarità : {{popularity}}</div>
-            <div>Media voti : <strong>{{vote_average}}</strong> </div>
-        </div>
+            <div class="release-date">Data di uscita : {{release_date}}</div>
+            <div class="overview">{{overview}}</div>
+            <div class="genre">Genere : {{genre}} </div>
+            <div class="popularity">Popolarità : {{popularity}}</div>
+            <div class="vote-average">Media voti : <strong>{{vote_average}}</strong> </div>
+        </li>
     </script>
 
     <script src="js/script.js"></script>

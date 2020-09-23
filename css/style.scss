@@ -14,25 +14,56 @@ body {
   margin: auto;
 }
 
+ul {
+  list-style: none;
+}
+
+/* ----------- */
 #search-film {
   margin: 10px 0;
   padding: 10px;
+  font-size: 18px;
   color: aliceblue;
   background-color: brown;
 }
 
 .film-container {
   margin: 10px 0;
+  display: flex;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+  }
 }
 
 .film-sheet {
   margin: 30px 0;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
 
   & > div {
     margin: 6px;
   }
 
-  img {
-    max-width: 200px;
+  .img-container {
+    align-self: center;
+
+    img {
+      max-width: 200px;
+    }
   }
+
+  .title {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+li.film-sheet:last-child {
+  margin-right: auto;
 }
