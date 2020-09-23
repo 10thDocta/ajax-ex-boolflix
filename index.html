@@ -37,16 +37,17 @@
     </div>
 
     <div class="film-container">
-        <ul>
-
-        </ul>
+        <ul class="movie"> </ul>
+        <ul class="tv"> </ul>
     </div>
 
 
     <script id="film-template" type="text/x-handlebars-template">
         <li class="film-sheet">
             <div class="img-container">
-                <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt="">
+                <!-- <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt=""> -->
+                <img src={{poster_path}} alt="">
+
             </div>
             <div class="title">Titolo : <h2>{{title}}</h2>
             </div>
@@ -57,8 +58,8 @@
             <div class="overview">{{overview}}</div>
             <div class="genre">Genere : {{genre}} </div>
             <div class="popularity">Popolarità : {{popularity}}</div>
-            <div class="vote-average">Media voti : <strong>{{{vote_average}}}</strong> </div>
-            <div class="vote-star"><ul></ul></strong> </div>
+            <div class="vote-average">Media voti : <strong>{{vote_average}}</strong> </div>
+            <div class="vote-star"><ul>{{{vote-star}}}</ul></strong> </div>
             
         </li>
     </script>
