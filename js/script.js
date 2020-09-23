@@ -57,7 +57,7 @@ const render = (arrObj, generObj, sortingKey = "popularity") => {
 
         //creo l'oggetto che servirà per compilare in automatico con handlebars
         const context = {
-            "active": "active",
+
             "poster_path": el.poster_path,
             "title": el.title,
             "original_title": el.original_title,
@@ -67,15 +67,15 @@ const render = (arrObj, generObj, sortingKey = "popularity") => {
             "genre": genreArr.join(", "),
             "popularity": el.popularity,
             "vote_average": el.vote_average,
-            // "vote-star": tempStarArr.join(" "),
+            "vote-star": tempStarArr.join(" "),
         }
 
         // compilo il template e lo aggiungo all'html
         var html = template(context);
         $(".film-container > ul").append(html);
 
-        $(".film-sheet.active").find(".vote-star ul").append(tempStarArr.join(" "));
-        $(".film-sheet.active").removeClass("active");
+        // $(".film-sheet.active").find(".vote-star ul").append(tempStarArr.join(" "));
+        // $(".film-sheet.active").removeClass("active");
 
     });
 }
