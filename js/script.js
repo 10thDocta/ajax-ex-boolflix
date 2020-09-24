@@ -75,7 +75,7 @@ const render = (arrObj, type = "", sortingKey = "popularity") => {
 
         //creo l'oggetto che servirà per compilare in automatico con handlebars
         const context = {
-            "poster_path": el.poster_path != null ? "https://image.tmdb.org/t/p/w500" + el.poster_path : "https://image.tmdb.org/t/p/w500" + el.backdrop_path,
+            "poster_path": el.poster_path != null ? "https://image.tmdb.org/t/p/w500" + el.poster_path : "https://image.tmdb.org/t/p/w300" + el.backdrop_path,
             "title": "",
             "original_title": "",
             "original_language": `img/flags/${el.original_language}.svg `,
@@ -255,6 +255,8 @@ $(function () {
 
                 $("#sort-genre").html("");
                 $("#sort-genre").append(`<option value="all">All</option>`);
+                $("#sort-result").prop('selectedIndex', 0);
+
                 tempFilterGenre.sort().forEach(e => $("#sort-genre").append(`<option value="${e.toLowerCase()}">${e}</option>`))
             });
         }
