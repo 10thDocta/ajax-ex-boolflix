@@ -40,8 +40,14 @@
     </div>
 
     <div class="film-container">
-        <ul class="movie"> </ul>
-        <ul class="tv"> </ul>
+        <div data-type="movie" class="movie-container container hide">
+            <h2>MOVIES</h2>
+            <ul class="movie"> </ul>
+        </div>
+        <div data-type="tv" class="tv-container container hide">
+            <h2>TV SHOWS</h2>
+            <ul class="tv"> </ul>
+        </div>
     </div>
 
 
@@ -50,7 +56,6 @@
             <div class="img-container">
                 <!-- <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt=""> -->
                 <img src={{poster_path}} alt="">
-
             </div>
             <div class="title">Titolo : <h2>{{title}}</h2>
             </div>

@@ -32,16 +32,29 @@ ul {
   display: flex;
   flex-direction: column;
 
-  & > ul {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 10px;
+  .hide {
+    display: none;
+  }
+
+  .container {
+    & > h2 {
+      font-size: 40px;
+      font-weight: 600;
+      position: relative;
+      bottom: -20px;
+    }
+
+    & > ul {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 10px;
+    }
   }
 }
 
 .film-sheet {
-  margin: 30px 0;
+  margin: 25px 0;
   max-width: 200px;
   display: flex;
   flex-direction: column;

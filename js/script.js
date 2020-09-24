@@ -7,86 +7,91 @@ let tempGenre;
 let tempMovie;
 let tempTv;
 
-let tempTest = [];
+// let tempTest = [];
+
+// variabile di appoggio per la lista dei generi per generare la select dei generi
+let tempFilterGenre = [];
 
 
-
-//funzione di reset
+/* -------------------------- FUNZIONI --------------------------- */
+// funzione di reset
 const reset = () => {
-    $(".film-container > ul").html("");
+    // cancello il contenuto di tutte le ul, per svuotare la pagina priam del nuovo popolamento
+    $(".film-container ul").html("");
+    //resetto la variabile tempFilterGenre
+    tempFilterGenre = [];
+    //riporto la selezione della select #sort-genre sul valore iniziale "all"
+    $("#sort-genre").prop('selectedIndex', 0);
 }
-
 
 // funzione che andarà a clonare n volte il template film-template
 const render = (arrObj, generObj, type = "", sortingKey = "popularity") => {
-
-    //reset del contenuto html
-    // reset();
-
-    $("#sort-genre").html("");
-    $("#sort-genre").append(`<option value="all">All</option>`);
 
     var source = document.getElementById("film-template").innerHTML;
     // eslint-disable-next-line no-undef
     var template = Handlebars.compile(source);
 
-    //ciclo ogni oggetto in arrObj e in base all'argomento "sortingKey" cambio il sorting 
+    //ciclo ogni oggetto in arrObj e in base all'argomento "sortingKey" cambio il sorting
+    //se la sortingKey è uguale a "vote_average" (che è un numero decimale) non uso parseInt altrimenti diventa intero 
     arrObj.results.sort((a, b) => sortingKey == "vote_average" ? b[sortingKey] - a[sortingKey] : parseInt(b[sortingKey], 10) - parseInt(a[sortingKey], 10)).forEach(el => {
 
-        // variabile di appoggio per salvare e poi stampare i generi per il campo filtra (#sort-genre)
+        // variabile di appoggio per salvare e poi stampare i generi nel html
         let genreArr = [];
 
-        // ciclo ogni elemento dell'arrey generObj (generi) confrontandolo con ogni elemento dell'arrey genre_ids dentro a arrObj(film)
+        // ciclo ogni elemento dell'arrey generObj(generi) confrontandolo con ogni elemento dell'array genre_ids dentro a arrObj(film)
         generObj.genres.forEach(gen => {
             el.genre_ids.forEach(elGen => {
                 if (elGen == gen.id) {
 
                     genreArr.push(gen.name);
 
-                    if (!$("#sort-genre option").text().includes(gen.name)) {
-                        $("#sort-genre").append(`<option value="${gen.name.toLowerCase()}">${gen.name}</option>`);
+                    if (!(tempFilterGenre.includes(gen.name))) {
+                        tempFilterGenre.push(gen.name);
                     }
                 }
             })
         })
 
-
         //creo n stelline in base alla valutazione media (el.vote_average)
         const countStars = Math.ceil(el.vote_average / 2);
 
-        let tempStarArr = [];
+        let tempStarArr = "";
         for (let i = 0; i < countStars; i++) {
-            tempStarArr.push(`<li><i class="fas fa-star"></i></li>`);
+            tempStarArr += `<li><i class="fas fa-star"></i></li>`;
         }
         for (let i = 0; i < 5 - countStars; i++) {
-            tempStarArr.push(`<li><i class="far fa-star"></i></li>`);
+            tempStarArr += `<li><i class="far fa-star"></i></li>`;
         }
 
         //creo l'oggetto che servirà per compilare in automatico con handlebars
         const context = {
-            "poster_path": el.poster_path != null ? "https://image.tmdb.org/t/p/w300/" + el.poster_path : "img/NoImage.png",
+            "poster_path": el.poster_path != null ? "https://image.tmdb.org/t/p/w300/" + el.poster_path : "https://image.tmdb.org/t/p/w300/" + el.backdrop_path,
             "title": "",
             "original_title": "",
-            "original_language": `img/flags/${el.original_language.slice(0, 2)}.svg `,
+            "original_language": `img/flags/${el.original_language}.svg `,
             "release_date": "",
             "overview": el.overview.split(" ").slice(0, 30).join(" ") + "...",
-            "genre": genreArr.join(", "),
+            "genre": genreArr.length > 0 ? genreArr.join(", ") : "---",
             "popularity": el.popularity,
             "vote_average": el.vote_average,
-            "vote-star": tempStarArr.join(" "),
+            "vote-star": tempStarArr,
+        }
+
+        if (el.poster_path == null && el.backdrop_path == null) {
+            context.poster_path = "img/NoImage.png";
         }
 
         switch (type) {
             case "movie":
                 context.title = el.title;
                 context.original_title = el.original_title;
-                context.release_date = el.release_date;
+                context.release_date = el.release_date != "" ? el.release_date : "---";
                 break;
 
             case "tv":
                 context.title = el.name;
-                context.orginal_title = el.original_name;
-                context.release_date = el.first_air_date;
+                context.original_title = el.original_name;
+                context.release_date = el.first_air_date != "" ? el.first_air_date : "---";
                 break;
 
             default:
@@ -97,7 +102,8 @@ const render = (arrObj, generObj, type = "", sortingKey = "popularity") => {
 
         // compilo il template e lo aggiungo all'html
         var html = template(context);
-        $(`.film-container > ul.${type}`).append(html);
+
+        $(`.film-container ul.${type}`).append(html);
     });
 }
 
@@ -117,7 +123,7 @@ const ajaxCallMovie = (string) => {
             },
             method: "GET",
             success: function (data) {
-                tempTest.push(data);
+                // tempTest.push(data);
                 tempMovie = data;
             },
             error: function (richiesta, stato, errori) {
@@ -140,7 +146,7 @@ const ajaxCallTv = (string) => {
             },
             method: "GET",
             success: function (data) {
-                tempTest.push(data);
+                // tempTest.push(data);
                 tempTv = data;
             },
             error: function (richiesta, stato, errori) {
@@ -197,9 +203,25 @@ $(function () {
                     return alert("Nessun risultato trovato");
                 }
 
+                console.log(movie[0]);
+                console.log(tv[0]);
+
+                $(".movie-container").hide();
+                $(".tv-container").hide();
+
                 reset();
-                render(movie[0], tempGenre, "movie");
-                render(tv[0], tempGenre, "tv");
+                if (movie[0].results.length != 0) {
+                    render(movie[0], tempGenre, "movie");
+                    $(".movie-container").show();
+                }
+                if (tv[0].results.length != 0) {
+                    render(tv[0], tempGenre, "tv");
+                    $(".tv-container").show();
+                }
+
+                $("#sort-genre").html("");
+                $("#sort-genre").append(`<option value="all">All</option>`);
+                tempFilterGenre.sort().forEach(e => $("#sort-genre").append(`<option value="${e.toLowerCase()}">${e}</option>`))
             });
         }
     });
@@ -208,36 +230,37 @@ $(function () {
     $("#sort-result").change(function () {
 
         let value = $(this).val();
-        console.log(tempTest);
-        // tempTest.forEach()
-        reset();
-        render(tempMovie, tempGenre, "movie", value);
 
-        if (value == "release_date") {
-            value = "first_air_date";
+        reset();
+        if (tempMovie.results.length != 0) {
+            render(tempMovie, tempGenre, "movie", value);
+
         }
-        render(tempTv, tempGenre, "tv", value);
+        if (tempTv.results.length != 0) {
+            if (value == "release_date") {
+                value = "first_air_date";
+            }
+            render(tempTv, tempGenre, "tv", value);
+        }
 
         console.log(tempMovie);
         console.log(tempTv);
     })
 
     // // filtro i risultati
-    // $("#sort-genre").change(function () {
+    $("#sort-genre").change(function () {
 
-    //     const value = $(this).val();
+        const value = $(this).val();
 
-    //     $(".film-container .film-sheet").filter(function () {
+        $(".film-container .film-sheet").filter(function () {
 
-    //         if (value == "all") {
-    //             $(this).show();
-    //         } else {
-    //             $(this).toggle($(this).children(".genre").text().toLowerCase().includes(value));
-    //         }
-    //     });
-
-
-    // })
+            if (value == "all") {
+                $(this).show();
+            } else {
+                $(this).toggle($(this).children(".genre").text().toLowerCase().includes(value));
+            }
+        });
+    })
 
 
 
