@@ -88,7 +88,7 @@ const render = (arrObj, type = "", sortingKey = "popularity") => {
         }
 
         if (el.poster_path == null && el.backdrop_path == null) {
-            // context.poster_path = "img/NoImage.png";
+            context.poster_path = "#";
             context.hide = "hide";
             context.show = "show";
         }
