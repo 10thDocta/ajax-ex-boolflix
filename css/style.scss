@@ -10,22 +10,47 @@ h3 {
 }
 
 body {
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  background-color: #bcbaba;
 }
 
 ul {
   list-style: none;
 }
 
+.container {
+  width: 90%;
+  margin: auto;
+}
+
 /* ----------- */
+/* ----------  HEADER ---------- */
+header {
+  height: 100px;
+  background-color: black;
+
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo h1 {
+    color: rgb(211, 5, 5);
+    font-size: 50px;
+  }
+}
+
 #search-film {
   margin: 10px 0;
   padding: 10px;
   font-size: 18px;
-  color: aliceblue;
-  background-color: brown;
+  color: black;
+  background-color: white;
 }
+
+/* ----------  MAIN ----------  */
 
 .film-container {
   margin: 10px 0;
@@ -36,7 +61,8 @@ ul {
     display: none;
   }
 
-  .container {
+  .movie-container,
+  .tv-container {
     & > h2 {
       font-size: 40px;
       font-weight: 600;
@@ -49,16 +75,19 @@ ul {
       flex-wrap: wrap;
       width: 100%;
       gap: 10px;
+      justify-content: space-between;
     }
   }
 }
 
 .film-sheet {
   margin: 25px 0;
-  max-width: 200px;
+  width: 500px;
+  height: 749px;
   display: flex;
   flex-direction: column;
   transition: padding 0.3s ease-out;
+  position: relative;
 
   &:hover {
     border-radius: 6px;
@@ -66,20 +95,53 @@ ul {
     padding-top: 10px;
   }
 
-  & > div {
-    margin: 6px;
-  }
-
   .img-container {
     align-self: center;
+    position: absolute;
+    width: 100%;
+    //test
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.4s, opacity 0.3s linear;
 
     img {
-      max-width: 200px;
+      width: 100%;
     }
   }
 
+  &:hover > .img-container {
+    // display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .sheet {
+    padding: 60px 20px 20px 20px;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.4s, opacity 0.3s linear;
+
+    & > div {
+      margin-bottom: 20px;
+    }
+  }
+
+  &:hover > .sheet {
+    // display: block;
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 11px 11px 23px 17px grey;
+    border-radius: 6px;
+  }
+
+  .sheet.show {
+    visibility: visible;
+    opacity: 1;
+    background-color: darkgrey;
+  }
+
   .title {
-    min-height: 100px;
     display: flex;
     flex-direction: column;
   }
@@ -96,8 +158,4 @@ ul {
       display: inline-block;
     }
   }
-}
-
-li.film-sheet:last-child {
-  margin-right: auto;
 }

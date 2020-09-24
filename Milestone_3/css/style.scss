@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2,
+h3 {
+  display: inline-block;
+}
+
+body {
+  width: 100%;
+  background-color: #bcbaba;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+/* ----------- */
+/* ----------  HEADER ---------- */
+header {
+  height: 100px;
+  background-color: black;
+
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo h1 {
+    color: rgb(211, 5, 5);
+    font-size: 50px;
+  }
+}
+
+#search-film {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+}
+
+/* ----------  MAIN ----------  */
+main {
+}
+
+.film-container {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+
+  .hide {
+    display: none;
+  }
+
+  .movie-container,
+  .tv-container {
+    & > h2 {
+      font-size: 40px;
+      font-weight: 600;
+      position: relative;
+      bottom: -20px;
+    }
+
+    & > ul {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 10px;
+    }
+  }
+}
+
+.film-sheet {
+  margin: 25px 0;
+  max-width: 200px;
+  width: calc(100% / 5);
+  display: flex;
+  flex-direction: column;
+  transition: padding 0.3s ease-out;
+
+  &:hover {
+    border-radius: 6px;
+    background-color: darkgrey;
+    padding-top: 10px;
+  }
+
+  & > div {
+    margin: 6px;
+  }
+
+  .img-container {
+    align-self: center;
+
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .title {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flag {
+    max-width: 23px;
+    vertical-align: middle;
+    border-radius: 25%;
+    margin-left: 9px;
+  }
+
+  .vote-star {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+li.film-sheet:last-child {
+  margin-right: auto;
+}

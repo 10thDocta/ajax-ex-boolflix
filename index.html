@@ -12,62 +12,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="stylesheet" href="css/style.css">
-
     <script src="js/script.js"></script>
-
-
 </head>
 
 <body>
 
-    <div class="search-input">
-        <input type="text" name="search-film" id="search-film">
-    </div>
-
-    <div class="filter">
-        <label for="sort-result">Ordina</label>
-        <select name="sort-result" id="sort-result">
-            <option value="popularity">Popolarità</option>
-            <option value="release_date">Data di uscita</option>
-            <option value="vote_average">Media Voti</option>
-        </select>
-
-        <label for="sort-genre">Filtra</label>
-        <select name="sort-genre" id="sort-genre">
-            <option value="all">All</option>
-        </select>
-    </div>
-
-    <div class="film-container">
-        <div data-type="movie" class="movie-container container hide">
-            <h2>MOVIES</h2>
-            <ul class="movie"> </ul>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BOOLFIX</h1>
+            </div>
+            <div class="search-input">
+                <input type="text" name="search-film" id="search-film">
+            </div>
         </div>
-        <div data-type="tv" class="tv-container container hide">
-            <h2>TV SHOWS</h2>
-            <ul class="tv"> </ul>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="filter">
+                <label for="sort-result">Ordina</label>
+                <select name="sort-result" id="sort-result">
+                    <option value="popularity">Popolarità</option>
+                    <option value="release_date">Data di uscita</option>
+                    <option value="vote_average">Media Voti</option>
+                </select>
+
+                <label for="sort-genre">Filtra</label>
+                <select name="sort-genre" id="sort-genre">
+                    <option value="all">All</option>
+                </select>
+            </div>
+
+            <div class="film-container">
+                <div data-type="movie" class="movie-container hide">
+                    <h2>MOVIES</h2>
+                    <ul class="movie"> </ul>
+                </div>
+                <div data-type="tv" class="tv-container  hide">
+                    <h2>TV SHOWS</h2>
+                    <ul class="tv"> </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
+
+
+    <footer>
+
+    </footer>
 
 
     <script id="film-template" type="text/x-handlebars-template">
         <li class="film-sheet">
-            <div class="img-container">
-                <!-- <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt=""> -->
+            <div class="img-container {{hide}} ">
                 <img src={{poster_path}} alt="">
             </div>
-            <div class="title">Titolo : <h2>{{title}}</h2>
+            <div class="sheet {{show}} ">
+                <div class="title">Titolo : <h2>{{title}}</h2>
+                </div>
+                <div class="original-title">Titolo originale : <h3>{{original_title}}</h3>
+                </div>
+                <div class="original_language">Lingua originale : <img class="flag" src={{original_language}} alt=""></div>
+                <div class="release-date">Data di uscita : {{release_date}}</div>
+                <div class="overview">Trama: <br>{{overview}}</div>
+                <div class="genre">Genere : {{genre}} </div>
+                <div class="popularity">Popolarità : {{popularity}}</div>
+                <div class="vote-average">Media voti : <strong>{{vote_average}}</strong> </div>
+                <div class="vote-star"><ul>{{{vote-star}}}</ul></strong> </div>
             </div>
-            <div class="original-title">Titolo originale : <h3>{{original_title}}</h3>
-            </div>
-            <div class="original_language">Lingua originale : <img class="flag" src={{original_language}} alt=""></div>
-            <div class="release-date">Data di uscita : {{release_date}}</div>
-            <div class="overview">{{overview}}</div>
-            <div class="genre">Genere : {{genre}} </div>
-            <div class="popularity">Popolarità : {{popularity}}</div>
-            <div class="vote-average">Media voti : <strong>{{vote_average}}</strong> </div>
-            <div class="vote-star"><ul>{{{vote-star}}}</ul></strong> </div>
             
         </li>
     </script>
