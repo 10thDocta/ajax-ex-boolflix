@@ -33,17 +33,21 @@
     <main>
         <div class="container">
             <div class="filter">
-                <label for="sort-result">Ordina</label>
-                <select name="sort-result" id="sort-result">
-                    <option value="popularity">Popolarità</option>
-                    <option value="release_date">Data di uscita</option>
-                    <option value="vote_average">Media Voti</option>
-                </select>
+                <div class="filter-result">
+                    <label for="sort-result">ORDINA</label>
+                    <select name="sort-result" id="sort-result">
+                        <option value="popularity">Popolarità</option>
+                        <option value="release_date">Data di uscita</option>
+                        <option value="vote_average">Media Voti</option>
+                    </select>
+                </div>
 
-                <label for="sort-genre">Filtra</label>
-                <select name="sort-genre" id="sort-genre">
-                    <option value="all">All</option>
-                </select>
+                <div class="filter-genre">
+                    <label for="sort-genre">FILTRA</label>
+                    <select name="sort-genre" id="sort-genre">
+                        <option value="all">All</option>
+                    </select>
+                </div>
             </div>
 
             <div class="film-container">
@@ -67,8 +71,8 @@
 
     <script id="film-template" type="text/x-handlebars-template">
         <li class="film-sheet">
-            <div class="img-container {{hide}} ">
-                <img src={{poster_path}} alt="{{title}} poster">
+            <div class="img-container">
+                <img class="{{hide}}" src={{poster_path}} alt="{{title}} poster">
             </div>
             <div class="sheet {{show}} ">
                 <div class="title">Titolo : <h2>{{title}}</h2>

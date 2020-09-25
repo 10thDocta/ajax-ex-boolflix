@@ -58,6 +58,24 @@ header .logo h1 {
 }
 
 /* ----------  MAIN ----------  */
+.filter {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filter .filter-result {
+  margin-right: 20px;
+}
+
+.filter label {
+  margin-right: 6px;
+}
+
 .film-container {
   margin: 10px 0;
   display: -webkit-box;
@@ -118,19 +136,19 @@ header .logo h1 {
 }
 
 .film-sheet .img-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   position: absolute;
-  width: 100%;
+  overflow-y: hidden;
   visibility: visible;
   opacity: 1;
   -webkit-transition: visibility 0.4s, opacity 0.3s linear;
   transition: visibility 0.4s, opacity 0.3s linear;
-}
-
-.film-sheet .img-container img {
-  width: 100%;
 }
 
 .film-sheet:hover > .img-container {

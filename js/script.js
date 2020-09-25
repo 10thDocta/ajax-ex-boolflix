@@ -169,7 +169,7 @@ const ajaxCallTv = (string) => {
 };
 
 
-const ajaxCallGenreMovie = () => {
+const ajaxCallGenre = () => {
 
     $.ajax(
         {
@@ -222,8 +222,7 @@ const ajaxCallGenreMovie = () => {
 $(function () {
 
     // con questa chiamata richiamo e salvo l'array di oggetti del Genere
-    ajaxCallGenreMovie();
-    // ajaxCallGenreTv();
+    ajaxCallGenre();
 
     // ricerca. Chiamata ajax solo alla pressione di invio (event.which == 13) e se il campo non è vuoto
     $("#search-film").keyup(function (ev) {
@@ -260,6 +259,10 @@ $(function () {
                 tempFilterGenre.sort().forEach(e => $("#sort-genre").append(`<option value="${e.toLowerCase()}">${e}</option>`))
             });
         }
+    });
+
+    $("#search-film").click(function () {
+        $("#search-film").val("");
     });
 
     // ordino in base alle opzioni del campo "ordina", richiamando la funzione render
