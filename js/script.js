@@ -188,9 +188,6 @@ const ajaxCallGenreMovie = () => {
             }
         }
     );
-};
-
-const ajaxCallGenreTv = () => {
 
     $.ajax(
         {
@@ -211,6 +208,9 @@ const ajaxCallGenreTv = () => {
     );
 };
 
+// const ajaxCallGenreTv = () => {
+// };
+
 
 
 
@@ -223,13 +223,13 @@ $(function () {
 
     // con questa chiamata richiamo e salvo l'array di oggetti del Genere
     ajaxCallGenreMovie();
-    ajaxCallGenreTv();
+    // ajaxCallGenreTv();
 
     // ricerca. Chiamata ajax solo alla pressione di invio (event.which == 13) e se il campo non è vuoto
-    $("#search-film").keyup(function () {
+    $("#search-film").keyup(function (ev) {
         const searchInput = $("#search-film").val();
 
-        if (event.which == 13 && searchInput != "") {
+        if (ev.which == 13 && searchInput != "") {
 
             $.when(ajaxCallMovie(searchInput), ajaxCallTv(searchInput)).done(function (movie, tv) {
 
@@ -270,7 +270,6 @@ $(function () {
         reset();
         if (tempMovie.results.length != 0) {
             render(tempMovie, "movie", sortingKey);
-
         }
         if (tempTv.results.length != 0) {
             if (sortingKey == "release_date") {

@@ -185,4 +185,20 @@ header .logo h1 {
 .film-sheet .vote-star li {
   display: inline-block;
 }
+
+@media screen and (max-width: 1500px) {
+  .film-sheet {
+    width: 300px;
+    height: 450px;
+  }
+  .film-sheet .sheet {
+    padding: 15px 15px 15px 15px;
+  }
+  .film-sheet .sheet > div {
+    margin-bottom: 10px;
+  }
+  .film-sheet .sheet .flag {
+    display: none;
+  }
+}
 /*# sourceMappingURL=style.css.map */

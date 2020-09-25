@@ -159,3 +159,22 @@ header {
     }
   }
 }
+
+@media screen and (max-width: 1500px) {
+  .film-sheet {
+    width: 300px;
+    height: 450px;
+
+    .sheet {
+      padding: 15px 15px 15px 15px;
+
+      & > div {
+        margin-bottom: 10px;
+      }
+
+      .flag {
+        display: none;
+      }
+    }
+  }
+}
