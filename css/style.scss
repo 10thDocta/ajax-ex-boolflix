@@ -114,13 +114,13 @@ header {
     display: flex;
     align-self: center;
     position: absolute;
-    overflow-y: hidden;
+
     visibility: visible;
     opacity: 1;
     transition: visibility 0.4s, opacity 0.3s linear;
 
     img {
-      // object-fit: cover;
+      width: 100%;
     }
   }
 
@@ -175,7 +175,7 @@ header {
   }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 2000px) {
   .film-sheet {
     width: 300px;
     height: 450px;

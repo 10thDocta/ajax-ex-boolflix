@@ -144,11 +144,14 @@ header .logo h1 {
   -ms-flex-item-align: center;
       align-self: center;
   position: absolute;
-  overflow-y: hidden;
   visibility: visible;
   opacity: 1;
   -webkit-transition: visibility 0.4s, opacity 0.3s linear;
   transition: visibility 0.4s, opacity 0.3s linear;
+}
+
+.film-sheet .img-container img {
+  width: 100%;
 }
 
 .film-sheet:hover > .img-container {
@@ -204,7 +207,7 @@ header .logo h1 {
   display: inline-block;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 2000px) {
   .film-sheet {
     width: 300px;
     height: 450px;
